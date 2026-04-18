@@ -9,7 +9,12 @@ initSocket(server);
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-  connectDb();
-  console.log(`Server is running on port ${PORT}`);
-});
+const startServer = async () => {
+  await connectDb();
+
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+};
+
+startServer();
