@@ -51,7 +51,9 @@ function InspectPage() {
   }, [dumpId]);
 
   useEffect(() => {
-    socketRef.current = io(`${import.meta.env.VITE_BACKEND_URL}`);
+    socketRef.current = io(import.meta.env.VITE_BACKEND_URL, {
+      transports: ["websocket"],
+    });
     socketRef.current.on("new_dump_created", () => {
       getDumpData();
     });
