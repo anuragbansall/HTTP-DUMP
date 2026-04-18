@@ -11,7 +11,7 @@ import { io } from "socket.io-client";
 
 function InspectPage() {
   const { dumpId } = useParams();
-  const url = `http://localhost:3000/dumps/${dumpId}`;
+  const url = `${import.meta.env.VITE_BACKEND_URL}/dumps/${dumpId}`;
   const socketRef = useRef(null);
 
   const [dumpData, setDumpData] = useState([]);
@@ -23,7 +23,7 @@ function InspectPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/dumps/api/${dumpId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/dumps/api/${dumpId}`,
       );
 
       const requests = response.data.dump ?? [];
@@ -51,7 +51,7 @@ function InspectPage() {
   }, [dumpId]);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:3000");
+    socketRef.current = io(`${import.meta.env.VITE_BACKEND_URL}`);
     socketRef.current.on("new_dump_created", () => {
       getDumpData();
     });
