@@ -6,10 +6,10 @@ export const handleDumpRequest = async (req, res) => {
     const { dumpId } = req.params;
 
     const newDump = await Dump.create({
-      method: req.method,
-      headers: req.headers,
-      body: req.body,
-      url: req.originalUrl,
+      method: req.method || "UNKNOWN",
+      headers: req.headers || {},
+      body: req.body || {},
+      url: req.originalUrl || "UNKNOWN",
       dumpId: dumpId,
     });
 
