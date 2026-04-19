@@ -54,18 +54,20 @@ function InspectPage() {
     socketRef.current = io(import.meta.env.VITE_BACKEND_URL, {
       transports: ["websocket"],
     });
-    socketRef.current.on("new_dump_created", () => {
-      getDumpData();
+    socketRef.current.on("new_dump_created", (data) => {
+      if (data.dumpId === dumpId) {
+        getDumpData();
+      }
     });
 
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [getDumpData]);
+  }, [getDumpData, dumpId]);
 
   useEffect(() => {
     getDumpData();
-  }, [dumpId]);
+  }, [dumpId, getDumpData]);
 
   const methodTone = (method = "GET") => {
     const value = method.toUpperCase();
@@ -161,30 +163,22 @@ function InspectPage() {
 
         <div className="mt-3 flex items-center justify-between text-xs text-slate-500 sm:text-sm">
           <span>{requestCountLabel}</span>
-          <a
-            href={url}
-            className="font-medium text-blue-700 hover:text-blue-800 hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open endpoint
-          </a>
         </div>
       </header>
 
       {dumpData.length > 0 ? (
         <section className="mt-6 grid gap-5 lg:grid-cols-[360px_1fr]">
-          <aside className="rounded-2xl border border-slate-200 bg-white shadow-[0_10px_24px_rgba(8,28,74,0.08)]">
+          <aside className="rounded-2xl border border-slate-200 bg-white shadow-[0_10px_24px_rgba(8,28,74,0.08)] p-4 max-h-screen flex flex-col">
             <h2 className="px-2 py-2 text-sm font-semibold text-slate-700">
               Captured Requests
             </h2>
-            <div className="max-h-[64vh] space-y-2 overflow-y-auto pr-1">
+            <div className="space-y-2 overflow-y-auto pr-1 max-h-full">
               {dumpData.map((item, index) => {
                 const isSelected = currentSelectedDump === item;
                 return (
                   <button
                     key={`${item._id || item.url || "req"}-${index}`}
-                    className={`w-full rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,123,255,0.25)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+                    className={`w-full cursor-pointer rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,123,255,0.25)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                       isSelected
                         ? "border-blue-200 bg-blue-50 shadow-sm"
                         : "border-slate-200 bg-white hover:border-blue-200 hover:bg-blue-50/40"
