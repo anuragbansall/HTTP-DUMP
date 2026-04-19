@@ -9,15 +9,15 @@ Create a unique endpoint, send requests to it, and inspect headers/body in real 
 
 ### Logo
 
-![HTTP Dump Logo](./public/demo/logo.png)
+![HTTP Dump Logo](./frontend/public/demo/logo.png)
 
 ### Home Page
 
-![HTTP Dump Home](./public/demo/home.png)
+![HTTP Dump Home](./frontend/public/demo/home.png)
 
 ### Inspect Page
 
-![HTTP Dump Inspect](./public/demo/inspect.png)
+![HTTP Dump Inspect](./frontend/public/demo/inspect.png)
 
 ## What This App Does
 
