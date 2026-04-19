@@ -117,8 +117,8 @@ function InspectPage() {
 
   if (loading) {
     return (
-      <div className="app-shell min-h-screen flex items-center justify-center">
-        <div className="glass-card rounded-2xl px-6 py-4">
+      <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="rounded-2xl border border-white/80 bg-white/88 px-6 py-4 shadow-[0_18px_50px_rgba(8,28,74,0.12)] backdrop-blur-[10px]">
           <p className="text-slate-600">Loading captured requests...</p>
         </div>
       </div>
@@ -126,8 +126,8 @@ function InspectPage() {
   }
 
   return (
-    <main className="app-shell page-enter min-h-screen">
-      <header className="glass-card rounded-3xl px-5 py-5 sm:px-8 sm:py-6">
+    <main className="mx-auto min-h-screen w-[min(1200px,calc(100%-2rem))] py-8 sm:py-10">
+      <header className="rounded-3xl border border-white/80 bg-white/88 px-5 py-5 shadow-[0_18px_50px_rgba(8,28,74,0.12)] backdrop-blur-[10px] sm:px-8 sm:py-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
@@ -140,13 +140,13 @@ function InspectPage() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              className="outline-btn focus-ring rounded-xl px-4 py-2 text-sm font-medium text-slate-700"
+              className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition duration-200 hover:-translate-y-px hover:border-blue-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,123,255,0.25)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               to="/"
             >
               Create Another
             </Link>
             <button
-              className="focus-ring rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+              className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-px hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,123,255,0.25)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer"
               onClick={handleCopyUrl}
               type="button"
             >
@@ -155,7 +155,7 @@ function InspectPage() {
           </div>
         </div>
 
-        <p className="mono mt-4 break-all rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-xs text-slate-700 sm:text-sm">
+        <p className="mt-4 break-all rounded-xl border border-slate-200 bg-white/90 px-4 py-3 font-mono text-xs text-slate-700 sm:text-sm">
           {url}
         </p>
 
@@ -174,7 +174,7 @@ function InspectPage() {
 
       {dumpData.length > 0 ? (
         <section className="mt-6 grid gap-5 lg:grid-cols-[360px_1fr]">
-          <aside className="surface-card rounded-2xl p-3">
+          <aside className="rounded-2xl border border-slate-200 bg-white shadow-[0_10px_24px_rgba(8,28,74,0.08)]">
             <h2 className="px-2 py-2 text-sm font-semibold text-slate-700">
               Captured Requests
             </h2>
@@ -184,13 +184,12 @@ function InspectPage() {
                 return (
                   <button
                     key={`${item._id || item.url || "req"}-${index}`}
-                    className={`stagger-enter focus-ring w-full rounded-xl border px-3 py-3 text-left transition-all ${
+                    className={`w-full rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,123,255,0.25)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                       isSelected
                         ? "border-blue-200 bg-blue-50 shadow-sm"
                         : "border-slate-200 bg-white hover:border-blue-200 hover:bg-blue-50/40"
                     }`}
                     onClick={() => setCurrentSelectedDump(item)}
-                    style={{ animationDelay: `${index * 60}ms` }}
                     type="button"
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -215,7 +214,7 @@ function InspectPage() {
           </aside>
 
           {currentSelectedDump ? (
-            <article className="surface-card min-w-0 rounded-2xl p-4 sm:p-6">
+            <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_10px_24px_rgba(8,28,74,0.08)] sm:p-6">
               <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
                 <span
                   className={`inline-flex rounded-md border px-2 py-0.5 text-xs font-semibold ${methodTone(
@@ -224,7 +223,7 @@ function InspectPage() {
                 >
                   {currentSelectedDump.method || "GET"}
                 </span>
-                <h2 className="mono min-w-0 truncate text-sm text-slate-700 sm:text-base">
+                <h2 className="min-w-0 truncate font-mono text-sm text-slate-700 sm:text-base">
                   {currentSelectedDump.url || "/"}
                 </h2>
               </div>
@@ -234,7 +233,7 @@ function InspectPage() {
                   <h3 className="text-sm font-semibold text-slate-800">
                     Headers
                   </h3>
-                  <pre className="mono mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 text-xs leading-relaxed text-slate-100">
+                  <pre className="mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 font-mono text-xs leading-relaxed text-slate-100">
                     {formatJson(currentSelectedDump.headers)}
                   </pre>
                 </section>
@@ -243,14 +242,14 @@ function InspectPage() {
                   <h3 className="text-sm font-semibold text-slate-800">
                     Request Body
                   </h3>
-                  <pre className="mono mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 text-xs leading-relaxed text-slate-100">
+                  <pre className="mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 font-mono text-xs leading-relaxed text-slate-100">
                     {formatJson(currentSelectedDump.body)}
                   </pre>
                 </section>
               </div>
             </article>
           ) : (
-            <div className="surface-card rounded-2xl p-8 text-center">
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-[0_10px_24px_rgba(8,28,74,0.08)]">
               <p className="text-slate-500">
                 Select a request to inspect full details.
               </p>
@@ -258,7 +257,7 @@ function InspectPage() {
           )}
         </section>
       ) : (
-        <section className="glass-card mt-6 rounded-2xl p-10 text-center">
+        <section className="mt-6 rounded-2xl border border-white/80 bg-white/88 p-10 text-center shadow-[0_18px_50px_rgba(8,28,74,0.12)] backdrop-blur-[10px]">
           <h2 className="text-xl font-semibold text-slate-800">
             No requests captured yet
           </h2>
