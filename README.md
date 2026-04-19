@@ -8,7 +8,7 @@ Create a unique endpoint, send requests to it, and inspect headers/body in real 
 ## Preview
 
 <p align="center">
-  <img src="./frontend/public/demo/logo.png" alt="HTTP Dump Logo" width="70" />
+  <img src="./frontend/public/demo/logo.png" alt="HTTP Dump Logo" width="150" />
 </p>
 
 ### Home Page
