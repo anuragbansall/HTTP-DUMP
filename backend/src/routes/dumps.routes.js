@@ -8,6 +8,7 @@ const dumpsRouter = express.Router();
 
 dumpsRouter.get("/api/:dumpId", getDumpById);
 
-dumpsRouter.all("/:dumpId/:rest*", handleDumpRequest);
+dumpsRouter.all("/:dumpId", handleDumpRequest);
+dumpsRouter.all("/:dumpId/*rest", handleDumpRequest);
 
 export default dumpsRouter;

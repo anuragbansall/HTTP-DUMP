@@ -9,6 +9,8 @@ export const handleDumpRequest = async (req, res) => {
       method: req.method || "UNKNOWN",
       headers: req.headers || {},
       body: req.body || {},
+      params: req.params || {},
+      query: req.query || {},
       url: req.originalUrl || "UNKNOWN",
       dumpId: dumpId,
     });
@@ -19,7 +21,7 @@ export const handleDumpRequest = async (req, res) => {
     });
 
     res.json({
-      message: `Received request for dump ID: ${dumpId}`,
+      message: `Received request for dump ID: ${newDump.url}`,
       dump: newDump,
     });
   } catch (error) {
