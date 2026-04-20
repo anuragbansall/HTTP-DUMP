@@ -234,6 +234,24 @@ function InspectPage() {
 
                 <section>
                   <h3 className="text-sm font-semibold text-slate-800">
+                    Params
+                  </h3>
+                  <pre className="mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 font-mono text-xs leading-relaxed text-slate-100">
+                    {formatJson(currentSelectedDump.params)}
+                  </pre>
+                </section>
+
+                <section>
+                  <h3 className="text-sm font-semibold text-slate-800">
+                    Query
+                  </h3>
+                  <pre className="mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 font-mono text-xs leading-relaxed text-slate-100">
+                    {formatJson(currentSelectedDump.query)}
+                  </pre>
+                </section>
+
+                <section>
+                  <h3 className="text-sm font-semibold text-slate-800">
                     Request Body
                   </h3>
                   <pre className="mt-2 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 font-mono text-xs leading-relaxed text-slate-100">
