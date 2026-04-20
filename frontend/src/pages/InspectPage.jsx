@@ -208,7 +208,7 @@ function InspectPage() {
           </aside>
 
           {currentSelectedDump ? (
-            <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_10px_24px_rgba(8,28,74,0.08)] sm:p-6">
+            <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_10px_24px_rgba(8,28,74,0.08)] sm:p-6 max-h-screen flex flex-col">
               <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
                 <span
                   className={`inline-flex rounded-md border px-2 py-0.5 text-xs font-semibold ${methodTone(
@@ -222,7 +222,7 @@ function InspectPage() {
                 </h2>
               </div>
 
-              <div className="mt-5 grid gap-4 overflow-x-auto">
+              <div className="mt-5 grid gap-4 overflow-x-auto overflow-y-auto">
                 <section>
                   <h3 className="text-sm font-semibold text-slate-800">
                     Headers

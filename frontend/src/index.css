@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+/* hide scrollbar */
+*::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body,
 #root {
